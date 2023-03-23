@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai tap: Xay dung lop mo ta dien thoai</title>
+</head>
+<body>
+<script>
+    class Mobile {
+        battery;
+        status;
+        message;
+        inbox;
+        sendItem;
+
+        constructor(battery) {
+            this.battery = battery;
+            this.status = this.setStatus();
+            this.message = "";
+            this.inbox = [];
+            this.sendItem = [];
+        }
+        writeMessage (text){
+            this.message = text;
+            this.battery --
+        }
+        sendMessage (mobile){
+          mobile.inbox.push(this.message);
+          this.sendItem.push(this.message);
+            this.battery --;
+            mobile.battery --;
+        }
+
+        setStatus(val){
+            if (this.battery <=0 && val === 'on' || this.battery<=0 && val === 'off'){
+                this.status = 'off';
+            } else if (this.battery <=100 && val === 'on'){
+                this.status = `on`;
+            }
+        }
+    }
+    let nokia = new Mobile(100);
+    let iphone = new Mobile(100);
+    nokia.setStatus(prompt('Ban muon on hay off mobile1'));
+    iphone.setStatus(prompt('Ban muon on hay off mobile2'));
+    nokia.writeMessage(prompt('Nhap vao tin nhan muon gui'));
+    nokia.sendMessage(iphone);
+    console.log(nokia);
+    console.log(iphone);
+    // console.log(iphone.inbox);
+    // console.log(nokia.sendItem);
+
+</script>
+</body>
+</html>
